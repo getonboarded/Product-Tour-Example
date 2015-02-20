@@ -1,0 +1,152 @@
+<html>
+<head>
+  <!-- Meta -->
+  <title>Onboarded Example - Product Tour</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="Onboarded">
+  <meta name="author" content="Onboarded">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+  <!-- Responsive CSS -->
+  <link rel="stylesheet" type="text/css" href="css/altStyles.css">
+
+  <!-- Load jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <!-- Load Onboarded plugin -->
+  <script src="js/jquery-onboarded-0.0.8.min.js"></script>
+
+  <!-- Start Onboarded flow -->
+  <script>
+    window.cleanUpFlowStyleClasses = function () {
+      // un-highlight items with lit-up class
+      $("#headerItemOne").removeClass("lit-up")
+      $("#headerItemTwo").removeClass("lit-up")
+      $("#footerItemOne").removeClass("lit-up")
+      $("#mainItemOne").removeClass("lit-up")
+    }
+    jQuery( function () {
+      window.ol = Onboarded.load()
+
+      $("#start").on("click", function (e) {
+        // Show the overlay
+        $(".overlay").removeClass("hidden")
+        ol.startFlow({ skipApiCheck: true })
+      })
+      $('.overlay').on("click", function (e) {
+        // When a user clicks on overlay, dismiss the flow without resetting it
+        ol.getFlow().dismiss()
+        return false
+      })
+      $("#endFlow").on("click", function (e) {
+        // Completion button - Dismisses and Resets the flow
+        ol.resetFlow().dismissFlow()
+      })
+
+      $(document)
+        .on("onboarded:flow:afterDismissal", function (e, flow, step) {
+          cleanUpFlowStyleClasses()
+          // hide the overlay
+          $(".overlay").addClass("hidden")
+        })
+        .on("onboarded:step:afterStart", function (e, step) {
+          // step.$step
+          switch ( step.label ) {
+            case "one":
+              cleanUpFlowStyleClasses()
+              $("#headerItemOne").addClass("lit-up")
+              return false
+              break
+            case "two":
+              cleanUpFlowStyleClasses()
+              $("#headerItemTwo").addClass("lit-up")
+              return false
+              break
+            case "three":
+              cleanUpFlowStyleClasses()
+              $("#footerItemOne").addClass("lit-up")
+              return false
+              break
+            case "four":
+              cleanUpFlowStyleClasses()
+              $("#mainItemOne").addClass("lit-up")
+              return false
+              break
+            default:
+              return e
+          }
+        })
+        .on("onboarded:step:afterComplete", function (e, step) {
+            switch ( step.label ) {
+                case "four":
+                    cleanUpFlowStyleClasses()
+                    break
+                default:
+            }
+        })
+    })
+  </script>
+
+</head>
+<body>
+  <div id="wrapper">
+
+    <div id="header">
+      <div id="headerItemOne">Nav One</div>
+      <div id="headerItemTwo">Nav Two</div>
+    </div>
+    <div id="main">
+      <div class="row-fluid">
+        <div class="offset2 span8">
+          <h1 class="title"><a id="logo" href="http://www.getonboarded.com"></a>Onboarded Example - Product Tour</h1>
+          <button id="start">Start Tour</button>
+          <div class="margin-top margin-bottom">
+            <div id="mainItemOne">This is a paragraph of extremely important information which users really need to read in order to have a good time.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div id="footerItemOne">Other Content</div>
+    </div>
+
+    <div class="oc" data-onboarded-token="-6j5J3BOlXxjXTxYAR6OGA" style="display: none;">
+      <div data-onboarded-flow="product-tour-example">
+
+        <section id="step-one" data-step="one">
+          <h2>Fill With Nav One Onboarding Content</h2>
+          <button data-name="next" data-action-next="two">Next</button>
+        </section>
+
+        <section id="step-two" data-step="two">
+          <h2>Fill With Nav Two Onboarding Content</h2>
+          <button data-name="previous" data-action-next="one">Prev</button>
+          <button data-name="next" data-action-next="three">Next</button>
+        </section>
+
+        <section id="step-three" data-step="three">
+          <h2>Fill With Other Onboarding Content</h2>
+          <button data-name="previous" data-action-next="two">Prev</button>
+          <button data-name="next" data-action-next="four">Next</button>
+        </section>
+
+        <section id="step-four" data-step="four">
+          <h2>Fill With More Onboarding Content</h2>
+          <button data-name="previous" data-action-next="two">Prev</button>
+          <button id="endFlow" data-name="finish">Done</button>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="overlay hidden"></div>
+
+  </div>
+<script type="text/javascript">
+  console.log("Onboarded Example - Product Tour");
+</script>
+</body>
+</html>
