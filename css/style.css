@@ -517,8 +517,7 @@ a {
   display: inline-block;
   height: 60px;
   width: 60px;
-  margin-right: 15px;
-  background: url('/img/Onboarded-logo.png');
+  background: url('../img/Onboarded-logo.png');
   background-size: cover;
   background-position: center;
   vertical-align: middle;
@@ -548,8 +547,10 @@ a {
   -ms-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
-.title {
+.top {
   margin-top: 60px;
+}
+.tag {
   color: #777;
 }
 #start {
@@ -590,7 +591,7 @@ a {
 }
 #mainItemOne {
   width: 50%;
-  margin: 120px auto 0px;
+  margin: 30px auto 0px;
   line-height: 30px;
   background: #FFF;
 }
@@ -642,7 +643,7 @@ a {
 #step-one {
   position: absolute;
   top: 75px;
-  left: 30px;
+  left: 15px;
   width: 50%;
   margin: 0px auto;
   padding: 60px;
@@ -651,7 +652,7 @@ a {
 #step-two {
   position: absolute;
   top: 75px;
-  right: 30px;
+  right: 15px;
   width: 30%;
   margin: 0px auto;
   padding: 60px;
@@ -661,17 +662,17 @@ a {
   position: fixed;
   bottom: 105px;
   left: 50%;
-  width: 380px;
-  margin: 0px 0px 0px -250px;
+  width: 240px;
+  margin: 0px 0px 0px -180px;
   padding: 60px;
   background: #FFF;
 }
 #step-four {
   position: absolute;
-  top: 149px;
+  top: 104px;
   left: 50%;
-  width: 380px;
-  margin: 0px 0px 0px -250px;
+  width: 240px;
+  margin: 0px 0px 0px -180px;
   padding: 60px;
   background: #FFF;
 }
