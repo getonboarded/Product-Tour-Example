@@ -19,20 +19,20 @@
   <!-- Load Onboarded plugin -->
   <script src="./js/jquery-onboarded-0.0.8.min.js"></script>
 
-  <!-- Start Onboarded flow -->
+  <!-- Custom Product Tour Javascript -->
   <script>
+    // Method to unhighlight everything on the page
     window.cleanUpFlowStyleClasses = function () {
-      // un-highlight items with lit-up class
       $("#headerItemOne").removeClass("lit-up")
       $("#headerItemTwo").removeClass("lit-up")
       $("#footerItemOne").removeClass("lit-up")
       $("#mainItemOne").removeClass("lit-up")
     }
     jQuery( function () {
+      // Load Onboarded
       window.ol = Onboarded.load()
-
       $("#start").on("click", function (e) {
-        // Show the overlay
+        // Show the overlay background and start the flow without checking API for user's state
         $(".overlay").removeClass("hidden")
         ol.startFlow({ skipApiCheck: true })
       })
@@ -46,10 +46,11 @@
         ol.resetFlow().dismissFlow()
       })
 
+      // Event Handlers
       $(document)
         .on("onboarded:flow:afterDismissal", function (e, flow, step) {
           cleanUpFlowStyleClasses()
-          // hide the overlay
+          // When flow gets dismissed, hide the overlay
           $(".overlay").addClass("hidden")
         })
         .on("onboarded:step:afterStart", function (e, step) {
@@ -110,6 +111,8 @@
       <div id="footerItemOne">Other Content</div>
     </div>
 
+    <!-- Start Onboarded Flow Markup -->
+    <!-- Dont forget to swap data-onboarded-token with your own project token so you can log in to see your data and analytics ! -->
     <div class="oc" data-onboarded-token="-6j5J3BOlXxjXTxYAR6OGA" style="display: none;">
       <div data-onboarded-flow="product-tour-example">
 
@@ -138,6 +141,7 @@
 
       </div>
     </div>
+    <!-- End Onboarded Flow Markup -->
 
     <div class="overlay hidden"></div>
 
